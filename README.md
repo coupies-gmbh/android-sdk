@@ -1,2 +1,2 @@
 # android-sdk
-Android SDK to integration coupons into your Android application
+Android SDK to integrate COUPIES coupons into your Android application
