@@ -202,7 +202,7 @@ List<Offer> coupons = couponService.get CouponsWithLocation(session, myPosition,
 ```
 You will then retrieve a list of coupon objects.
 
-#Function overview
+#3.Function overview
 An instance of an CouponService provides a variety of functions. Below these functions are represented with a short explanation.
 ##Native functions:
 Return one Coupon with the specified coupon-id = id:
