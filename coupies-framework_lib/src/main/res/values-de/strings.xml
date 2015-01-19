@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Allgemeine Text -->
+    <string name="dialog_no_text">Nein</string>
+    <string name="dialog_yes_text">Ja</string>
+    <!-- Texte für custom dialog -->
+    <string name="custom_dialog_progress_text">Dein Kassenbon wird gerade hochgeladen.</string>
+    <string name="cashback_image_send_ok_text_1">Bon erfolgreich abgeschickt!</string>
+    <string name="cashback_image_send_ok_text_2">Der Bon wird nun geprüft und Du erhältst bald eine Nachricht.</string>
+    <string name="cashback_image_send_error_text_1">Ein Fehler ist aufgetreten</string>
+    <string name="cashback_image_send_error_text_2">Der Bon konnte nicht an uns übertragen werden.</string>
+    <!-- Texte für nfc/qr einlösung -->
+    <string name="capture_qr_invalid">"Der QR-Code wurde nicht erkannt."</string>
+    <string name="dialog_no_sticker_title_text">Kein Sticker</string>
+    <string name="dialog_no_sticker_body_text">Du konntest keinen Sticker finden. Willst du trotzdem den Coupon einlösen?</string>
+    <string name="coupon_redemption_hint">"Wie geht das?"</string>
+    <string name="coupon_redemption_caption">Bringe den COUPIES-Sticker ins Display</string>
+    <string name="coupon_redemption_hint_nfc">"1. Suche den Sticker an der Kasse \n2. Halte dein Handy an den Sticker \n   (NFC muss angeschaltet sein) \n3. Zeige das Display vor"</string>
+    <string name="coupon_redemption_hint_qr">"1. Suche den Sticker an der Kasse \n2. Scanne den Code zum Einlösen \n3. Zeige das Display vor"</string>
+    <string name="coupon_redemption_error">"Kein Sticker?"</string>
+    <!-- Texte für Kassenboneinlöung (contextView) -->
+    <string name="cashback_redemtion_need_what">Was muss drauf?</string>
+    <string name="cashback_redemtion_need_close">Hilfe schließen</string>
+    <string name="cashback_validation_back_btn">Nein, nochmal</string>
+    <string name="cashback_validation_remaining_title">Willst Du diesen Coupon mehrfach einlösen?</string>
+    <string name="cashback_validation_send_btn">Abschicken</string>
+    <string name="cashback_validation_finish_btn">Ja, abschicken</string>
+    <string name="cashback_validation_text">Filiale, Datum und Bonsumme sichtbar?</string>
+    <string name="cashback_validation_go_on_btn">Ja, weiter</string>
+    <!-- Texte für Kassenboneinlösung (redemptionView) -->
+    <string name="cashback_take_picture_memory_exception">Leider ist der Speicher Deines Smartphones voll. Du solltest den Speicher leeren, indem du alle Apps schließt. Starte COUPIES danach neu.</string>
+    <string name="cashback_error_try_again_title">Unerwarteter Fehler</string>
+    <string name="cashback_error_try_again_text">Ein Fehler ist aufgetreten. Bitte versuch es erneut.</string>
+    <string name="cashback_image_taken_memory_error">Der interne Speicher deines Smartphones ist zu voll, bitte versuch es erneut.</string>
+    <string name="cashback_image_file_output_stream_error">Es ist ein Fehler beim konvertieren des Fotos aufgetreten, bitte versuch es erneut.</string>
+    <string name="cashback_get_camera_error">Die Kamera deines Smartphones konnte nicht gestartet werden, bitte versuch es erneut.</string>
+    <string name="cashback_validation_add_picture_btn">Abschnitt\n hinzufügen</string>
+    <string name="cashback_redemption_help_text_one">Filial-Adresse, Bon-Summe und Kaufdatum müssen sichtbar sein.</string>
+    <string name="cashback_redemption_help_text_two">Wenn der Kassenbon zu lang ist, kannst Du bis zu zwei weitere Abschnitte hinzufügen.</string>
+    <string name="cashback_overlay_help_title_text">KASSENBON</string>
+    <string name="cashback_overlay_help_body_text">Bringe den Kassenbon in den Rahmen. Ist der Kassenbon zu lang, fotografiere erst den oberen Teil.</string>
+</resources>

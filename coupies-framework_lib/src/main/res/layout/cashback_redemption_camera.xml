@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black" >
+   
+  <FrameLayout
+      android:id="@+id/preview_view"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:layout_centerInParent="true"/>
+
+  <ImageButton
+      android:id="@+id/camera_light_button"
+      android:layout_width="45dp"
+      android:layout_height="45dp"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:layout_marginBottom="88dp"
+      android:adjustViewBounds="true"
+      android:background="@color/transparent"
+      android:scaleType="fitXY"
+      android:src="@drawable/camera_flash_auto"
+      android:visibility="gone" />
+
+  <RelativeLayout
+      android:id="@+id/cashback_redemption_camera_rl"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="vertical" >
+	  
+	  <RelativeLayout
+	    android:id="@+id/cashback_redemption_context_tab"
+	    android:layout_width="fill_parent"
+	    android:layout_height="80sp"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="false"
+	    android:background="@color/background_color"
+	    android:gravity="top" >
+
+	    <RelativeLayout
+	        android:layout_width="90sp"
+	        android:layout_height="40sp"
+	        android:layout_centerHorizontal="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginBottom="20sp"
+	        android:layout_marginLeft="10sp"
+	        android:layout_marginTop="20sp"
+	        android:gravity="center" >
+
+	        <ImageButton
+	            android:id="@+id/cashback_redemption_trigger"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:background="@drawable/button_background"
+	            android:enabled="false"
+	            android:scaleType="fitCenter"
+	            android:src="@drawable/camera_image" />
+
+	    </RelativeLayout>
+
+	    <Button
+	        android:id="@+id/cashback_redemption_need"
+	        android:layout_width="90dp"
+	        android:layout_height="40dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginRight="10dp"
+	        android:layout_marginTop="30dp"
+	        android:background="@drawable/material_icon_button_background"
+	        android:gravity="center"
+	        android:maxWidth="90dp"
+	        android:text="@string/cashback_redemtion_need_what"
+	        android:textColor="@color/white"
+	        android:textSize="12sp"
+	        android:textStyle="bold" />
+
+	</RelativeLayout>
+	  
+	  <RelativeLayout
+	      android:id="@+id/cashback_validation_layout"
+	      android:layout_width="fill_parent"
+	      android:layout_height="80dp"
+	      android:layout_alignParentBottom="true"
+	      android:background="@color/background_color"
+	      android:visibility="gone" >
+
+	      <RelativeLayout
+	          android:id="@+id/cashback_redemption_number_layout"
+	          android:layout_width="fill_parent"
+	          android:layout_height="80dp">
+
+	          <TextView
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:layout_alignParentTop="true"
+	              android:layout_centerInParent="true"
+	              android:layout_margin="5dp"
+	              android:text="@string/cashback_validation_remaining_title"
+	              android:textColor="@color/white"
+	              android:textSize="14sp" />
+
+	          <Button
+	              android:id="@+id/cashback_redemption_number_negative_btn"
+	              android:layout_width="40dp"
+	              android:layout_height="40dp"
+	              android:layout_marginBottom="5dp"
+	              android:layout_marginLeft="10dp"
+	              android:layout_marginTop="30dp"
+	              android:background="@drawable/button_background"
+	              android:gravity="center"
+	              android:scaleType="fitCenter"
+	              android:text="-"
+	              android:textColor="@color/white"
+	              android:textSize="22sp"
+	              android:textStyle="bold" />
+
+	          <EditText
+	              android:id="@+id/cashback_redemption_numbers"
+	              android:layout_width="40dp"
+	              android:layout_height="40dp"
+	              android:layout_alignTop="@+id/cashback_redemption_number_negative_btn"
+	              android:layout_marginLeft="10dp"
+	              android:layout_toRightOf="@+id/cashback_redemption_number_negative_btn"
+	              android:background="@drawable/camera_quantity_background"
+	              android:clickable="false"
+	              android:ems="10"
+	              android:focusable="false"
+	              android:gravity="center"
+	              android:inputType="number"
+	              android:text="1"
+	              android:textColor="@color/background_color"
+	              android:textColorHint="@color/blue_light"
+	              ><!-- android:textCursorDrawable="@null"  -->
+
+	          </EditText>
+
+	          <Button
+	              android:id="@+id/cashback_redemption_number_positive_btn"
+	              android:layout_width="40dp"
+	              android:layout_height="40dp"
+	              android:layout_alignParentRight="false"
+	              android:layout_marginBottom="5dp"
+	              android:layout_marginLeft="10dp"
+	              android:layout_marginTop="30dp"
+	              android:layout_toRightOf="@+id/cashback_redemption_numbers"
+	              android:background="@drawable/button_background"
+	              android:gravity="center"
+	              android:text="+"
+	              android:textColor="@color/white"
+	              android:textSize="22sp"
+	              android:textStyle="bold" />
+
+	          <Button
+	              android:id="@+id/cashback_validation_finish_btn"
+	              android:layout_width="120dp"
+	              android:layout_height="40dp"
+	              android:layout_alignParentRight="true"
+	              android:layout_marginBottom="5dp"
+	              android:layout_marginRight="10dp"
+	              android:layout_marginTop="30dp"
+	              android:background="@drawable/button_background"
+	              android:gravity="center"
+	              android:text="@string/cashback_validation_send_btn"
+	              android:textColor="@color/white"
+	              android:textSize="12sp"
+	              android:textStyle="bold" />
+	      </RelativeLayout>
+
+	      <RelativeLayout
+	          android:id="@+id/cashback_validation_context_tab"
+	          android:layout_width="fill_parent"
+	          android:layout_height="80dp"
+	          android:background="@color/background_color" >
+	
+	          <TextView
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:layout_alignParentTop="true"
+	              android:layout_centerInParent="true"
+	              android:layout_margin="5dp"
+	              android:text="@string/cashback_validation_text"
+	              android:textColor="@color/white"
+	              android:textSize="14sp" />
+				
+	          <LinearLayout
+	              android:layout_width="match_parent"
+	              android:layout_height="45dp"
+	              android:layout_marginTop="30dp"
+	              android:divider="@color/transparent"
+	              android:gravity="top|center_horizontal"
+	              android:orientation="horizontal"
+	              android:weightSum="3.5" >
+
+	          <Button
+	              android:id="@+id/cashback_validation_back_btn"
+	              android:layout_width="80dp"
+	              android:layout_height="match_parent"
+	              android:layout_gravity="center"
+	              android:layout_marginRight="8dp"
+	              android:layout_weight="1"
+	              android:background="@drawable/button_background"
+	              android:gravity="center"
+	              android:minHeight="42dp"
+	              android:text="@string/cashback_validation_back_btn"
+	              android:textColor="@color/white"
+	              android:textSize="14sp"
+	              android:textStyle="bold" />
+
+	          <Button
+	              android:id="@+id/cashback_validation_add_picture_btn"
+	              android:layout_width="90dp"
+	              android:layout_height="match_parent"
+	              android:layout_gravity="top|center_horizontal"
+	              android:layout_marginLeft="8dp"
+	              android:layout_marginRight="8dp"
+	              android:layout_weight="1"
+	              android:background="@drawable/button_background"
+	              android:gravity="top|center_horizontal"
+	              android:maxWidth="90dp"
+	              android:minHeight="40dp"
+	              android:text="@string/cashback_validation_add_picture_btn"
+	              android:textColor="@color/white"
+	              android:textSize="14sp"
+	              android:textStyle="bold" />
+
+	          <Button
+	              android:id="@+id/cashback_validation_go_on_btn"
+	              android:layout_width="80dp"
+	              android:layout_height="match_parent"
+	              android:layout_gravity="center"
+	              android:layout_marginLeft="8dp"
+	              android:layout_weight="1"
+	              android:background="@drawable/button_background"
+	              android:gravity="center"
+	              android:minHeight="42dp"
+	              android:text="@string/cashback_validation_go_on_btn"
+	              android:textColor="@color/white"
+	              android:textSize="14sp"
+	              android:textStyle="bold" />
+
+				</LinearLayout>
+	      </RelativeLayout>
+      </RelativeLayout>
+	
+	  <de.coupies.framework.utils.CoupiesScrollView
+	      android:id="@+id/cashback_receipt_scroll_view"
+	      android:layout_width="match_parent"
+	      android:layout_height="match_parent"
+	      android:layout_marginBottom="80dp"
+	      android:background="@color/transparent"
+	      android:fadingEdge="none"
+	      android:visibility="gone" >
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="center_horizontal">
+
+	      <ImageView
+	          android:id="@+id/cashback_redemption_croped_preview_one"
+	          android:layout_width="match_parent"
+	          android:layout_height="wrap_content"
+	          android:layout_gravity="fill_horizontal"
+	          android:scaleType="centerCrop" />
+	
+	      <ImageView
+	          android:id="@+id/cashback_redemption_croped_preview_two"
+	          android:layout_width="match_parent"
+	          android:layout_height="wrap_content"
+	          android:scaleType="centerCrop" />
+	
+	      <ImageView
+	          android:id="@+id/cashback_redemption_croped_preview_three"
+	          android:layout_width="match_parent"
+	          android:layout_height="wrap_content"
+	          android:layout_gravity="center_horizontal"
+	          android:scaleType="centerCrop" />
+
+      </LinearLayout>
+      
+  </de.coupies.framework.utils.CoupiesScrollView>
+	  
+	  <ImageView
+	      android:id="@+id/border_view_top"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:layout_alignParentTop="true"
+	      android:layout_centerHorizontal="true"
+	      android:layout_marginTop="10dp"
+	      android:adjustViewBounds="true"
+	      android:src="@drawable/kamera_border_top"
+	      android:visibility="gone" />
+      <ImageView
+          android:id="@+id/border_view_left"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@id/border_view_top"
+          android:layout_below="@id/border_view_top"
+          android:layout_centerVertical="true"
+          android:adjustViewBounds="true"
+          android:src="@drawable/kamera_border_left_right"
+          android:visibility="gone" />
+
+      <ImageView
+          android:id="@+id/border_view_right"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignRight="@id/border_view_top"
+          android:layout_below="@id/border_view_top"
+          android:layout_centerVertical="true"
+          android:adjustViewBounds="true"
+          android:src="@drawable/kamera_border_left_right"
+          android:visibility="gone" />
+
+      <ImageView
+          android:id="@+id/cashback_help_image_overlay"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_above="@id/cashback_redemption_context_tab"
+          android:layout_below="@id/border_view_top"
+          android:layout_toLeftOf="@id/border_view_right"
+          android:layout_toRightOf="@id/border_view_left"
+          android:scaleType="fitXY"
+          android:src="@drawable/cashback_redemption_hint_background"
+          android:visibility="gone" />
+      
+      <TextView
+          android:id="@+id/cashback_help_image_overlay_top_text"
+          android:layout_width="wrap_content"
+          android:layout_height="70dp"
+          android:layout_alignLeft="@id/cashback_help_image_overlay"
+          android:layout_alignRight="@id/cashback_help_image_overlay"
+          android:layout_alignTop="@id/cashback_help_image_overlay"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="15dp"
+          android:gravity="center"
+          android:text="@string/cashback_overlay_help_title_text"
+          android:textColor="@color/black"
+          android:textSize="22sp"
+          android:visibility="gone" />
+      
+      <TextView
+          android:id="@+id/cashback_help_image_overlay_bottom_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@id/cashback_help_image_overlay"
+          android:layout_alignRight="@id/cashback_help_image_overlay"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="20dp"
+          android:layout_marginRight="20dp"
+          android:gravity="center"
+          android:text="@string/cashback_overlay_help_body_text"
+          android:textColor="@color/black"
+          android:textSize="16sp"
+          android:visibility="gone"
+         />
+	  
+      <FrameLayout
+          android:id="@+id/cashback_redemption_context"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:layout_alignParentBottom="true"
+          android:visibility="invisible"/>
+       
+  </RelativeLayout>
+
+  <ProgressBar
+      android:id="@+id/cashbackProcessingBar"
+      style="?android:attr/progressBarStyleLarge"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:layout_gravity="center"
+      android:visibility="gone" />
+	        
+</RelativeLayout>

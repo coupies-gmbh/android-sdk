@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fallback_latitude">50.94</string>
+	<string name="fallback_longitude">6.96</string>
+	<string name="fallback_accuracy">50</string>
+</resources>
