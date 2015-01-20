@@ -64,7 +64,7 @@ We recommend gradle builds. If you wish to integrate COUPIES based on the Eclips
 
 ###Import
 
-Clone the [latest stable version](coupies-framework_lib) of coupies-framework_lib and add the dependency to your project.
+Clone the [latest stable version](https://github.com/coupies-gmbh/android-sdk) and add the dependency to your project.
 
 ##Usage
 
