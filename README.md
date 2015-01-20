@@ -1,11 +1,11 @@
 #COUPIES Android SDK
 The COUPIES Android SDK enables you to easily integrate coupons in your app. The easiest way is to display everything in our CoupiesWebView (a customized WebView) or in an original WebView and let COUPIES do the rendering. You can customize the appearance with CSS. It is also possible to retrieve the objects directly (e.g. coupons and locations) and do the UI natively.
 
-#Installation
+##Installation
 
-We recommend gradle builds. If you wish to integrate COUPIES based on the Eclipse IDE please conatct us at felix.schul@coupies.de for more informations.
+We recommend gradle builds. If you wish to integrate COUPIES based on the Eclipse IDE please conatct us at felix.schul@coupies.de for more information.
 
-##Add these permissions in your Manifest:
+###Add these permissions in your Manifest:
 ```xml
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -16,13 +16,13 @@ We recommend gradle builds. If you wish to integrate COUPIES based on the Eclips
 <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 ```
 
-##Add these features in your Manifest:
+###Add these features in your Manifest:
 ```xml
 <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
 <uses-feature android:name="android.hardware.camera" android:required="true" />
 <uses-feature android:name="android.hardware.nfc" android:required="false" />
 ```
-##Add this metadata and activitys in your Manifest:
+###Add this metadata and activitys in your Manifest:
 ```xml
 <meta-data  android:name=”com.google.android.gms.version” 
             android:value=”@integer/google_play_service_version”/>
@@ -62,11 +62,11 @@ We recommend gradle builds. If you wish to integrate COUPIES based on the Eclips
 </activity>
 ```
 
-##Import to your project
+###Import
 
-Clone the latest stable Version of coupies-framework_lib and add the dependency to your project.
+Clone the [latest stable version](coupies-framework_lib) of coupies-framework_lib and add the dependency to your project.
 
-#Usage
+##Usage
 
 To access the COUPIES API you need to register your application and receive an API-key (felix.schul@coupies.de). You can register multiple applications and for each of them you will receive an API-key for accessing the API resources.
 
@@ -86,6 +86,6 @@ As API-level set “4” for all coupons including cashback or “3” for all c
 
 Lars Eimermacher, lars.eimermacher@coupies.de
 
-#Bugs
+##Bugs
 
 If you encounter any bugs. Please [report them](https://github.com/coupies-gmbh/android-sdk/issues).
