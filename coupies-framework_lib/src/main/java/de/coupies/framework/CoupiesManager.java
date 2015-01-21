@@ -14,7 +14,7 @@ import de.coupies.framework.services.ServiceFactoryImpl;
  */
 public class CoupiesManager {
 	private static final String LIVE_HOST = "www.coupies.de/api.php";
-	private static final String DEVEL_HOST = "dev.coupies.de/api.php";
+	private static final String DEVEL_HOST = "sandbox.coupies.de/api.php";
 	private static final int PORT = 443;
 	private static final String PROTOCOL = "https";
 	
