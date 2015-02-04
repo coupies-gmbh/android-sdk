@@ -5,7 +5,11 @@ The COUPIES Android SDK enables you to easily integrate coupons in your app. The
 
 We recommend gradle builds. If you wish to integrate COUPIES based on the Eclipse IDE please conatct us at felix.schul@coupies.de for more information.
 
-###Install using Maven
+###Import SDK to your project
+
+You can import the SDK using Mavem or manually. We recomment the first option.
+
+####Import using Maven
 
 The easiest way to install the COUPIES Android SDK ist to use maven import. Therefor you have to add the following lines to your gradle file:
 ```xml
@@ -21,7 +25,7 @@ dependencies {
 }
 ```
 
-###Install manually
+####Import manually
 
 To install the COUPIES Android SDK without Maven, follow these steps:
 
