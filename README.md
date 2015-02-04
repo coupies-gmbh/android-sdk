@@ -115,7 +115,7 @@ public abstract class AbstractFragment extends Fragment {
 private static final String API_KEY = null;
 ```
 
-As API-level set “4” for all coupons including cashback or “3” for all coupons, deals and offers excluding cashback.
+Set API-level to “4” for all coupons including cashback or “3” for all coupons, deals and offers excluding cashback.
 
 ## Author
 
