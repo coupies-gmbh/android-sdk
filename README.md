@@ -26,7 +26,7 @@ dependencies {
 To install the COUPIES Android SDK without Maven, follow these steps:
 
 1. Download the latest stable version.
-2. Copy the coupies-framework_lib-<version>.aar from HelloCOUPIES/libs into the libs folder of your project.
+2. Copy the coupies-framework_lib-\<version\>.aar from HelloCOUPIES/libs into the libs folder of your project.
 3. Add the following lines to your gradle file:
 ```xml
 repositories {
