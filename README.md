@@ -7,7 +7,7 @@ We recommend gradle builds. If you wish to integrate COUPIES based on the Eclips
 
 ###Import SDK to your project
 
-You can import the SDK using Mavem or manually. We recomment the first option.
+You can import the SDK using Maven or manually. We recomment the first option.
 
 ####Import using Maven
 
