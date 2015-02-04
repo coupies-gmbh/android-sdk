@@ -103,10 +103,10 @@ To access the COUPIES API you need to register your application and receive an A
 
 To run the example project (HelloCOUPIES), clone the repo, and open the Android Studio project in the "HelloCOUPES" directory. 
 
-Set your COUPIES API-key and the required COUPIES API-level. In the HelloCOUPIES demo app you have to add the key in the AbstractActivity class:
+Set your COUPIES API-key and the required COUPIES API-level. In the HelloCOUPIES demo app you have to add the key in the AbstractFragment class:
 
 ```java
-public abstract class AbstractActivity extends Activity {
+public abstract class AbstractFragment extends Fragment {
 // TODO: please return your coupies API Key here
 private static final String API_KEY = null;
 ```
