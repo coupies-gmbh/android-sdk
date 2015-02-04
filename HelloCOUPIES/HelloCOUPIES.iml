@@ -86,8 +86,8 @@
     <orderEntry type="library" exported="" name="support-annotations-21.0.2" level="project" />
     <orderEntry type="library" exported="" name="play-services-6.5.87" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.2" level="project" />
+    <orderEntry type="library" exported="" name="coupies-framework_lib-1.9.11" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.2" level="project" />
-    <orderEntry type="module" module-name="coupies-framework_lib" exported="" />
   </component>
 </module>
 

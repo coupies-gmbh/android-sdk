@@ -9,6 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import de.coupies.demoapp.fragment.CoupiesWebViewFragment;
+import de.coupies.demoapp.fragment.HtmlListFragment;
+
 /**
  * This is a simple demo-application that shows how to use the COUPIES-framework and integrate
  * coupons into your application.

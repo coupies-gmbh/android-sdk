@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import de.coupies.demoapp.R;
+
+import de.coupies.demoapp.fragment.AbstractFragment;
 import de.coupies.framework.CoupiesServiceException;
 import de.coupies.framework.beans.Offer;
 import de.coupies.framework.services.CouponService;
@@ -26,7 +27,7 @@ import de.coupies.framework.services.CouponService;
  *@author larseimermacher
  *
  */
-public class NativeListFragment extends AbstractActivity {
+public class NativeListFragment extends AbstractFragment {
 
 	private List<Offer> offers;
 	private String couponHtml;
@@ -69,7 +70,7 @@ public class NativeListFragment extends AbstractActivity {
         }
         else {
         	String msg = "please enter your coupies API Key first. see: " +
-					"de.coupies.demoapp.AbstractActivity";
+					"de.coupies.demoapp.fragment.AbstractFragment";
     		Log.e("CoupiesDemoApp", msg);
 			new AlertDialog.Builder(getActivity()).setMessage(
         	    msg).create().show();
@@ -129,7 +130,7 @@ public class NativeListFragment extends AbstractActivity {
 	}
 	
 	@Override
-	void refreshView() {
+    public void refreshView() {
 		// No WebView to refresh
 	}
 }

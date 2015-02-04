@@ -22,8 +22,14 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
-    compile project(':coupies-framework_lib')
+    compile(name:'coupies-framework_lib-1.9.11', ext:'aar')
     compile 'com.android.support:appcompat-v7:21.0.2'
     compile 'com.google.android.gms:play-services:6.5.87'
 }

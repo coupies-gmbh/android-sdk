@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import de.coupies.demoapp.fragment.AbstractFragment;
 import de.coupies.framework.CoupiesServiceException;
 import de.coupies.framework.beans.Barcode;
 import de.coupies.framework.beans.Coupon;
@@ -54,11 +56,11 @@ public class NativeListDetailHtml extends Activity {
 
 		public void onError(Exception e) {
 			e.printStackTrace();
-			AbstractActivity.alert(listenerActivity,"Ein Problem ist aufgetreten", e.getMessage(), new OnClickListener(){
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}
-			});
+			AbstractFragment.alert(listenerActivity, "Ein Problem ist aufgetreten", e.getMessage(), new OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 		}
 
 		public void onCancel() {
@@ -66,11 +68,11 @@ public class NativeListDetailHtml extends Activity {
 		}
 		
 		public void onBadStickerRead() {
-			AbstractActivity.alert(listenerActivity,"Fehlerhafte Einl�sung", "Der Coupon geh�rt nicht zu dem Coupies-Touchpoint", new OnClickListener(){
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}
-			});
+			AbstractFragment.alert(listenerActivity, "Fehlerhafte Einl�sung", "Der Coupon geh�rt nicht zu dem Coupies-Touchpoint", new OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 		}
 
 		
@@ -144,7 +146,7 @@ public class NativeListDetailHtml extends Activity {
 		 */
 		Bundle extras = getIntent().getExtras();
 		htmlData = extras.getString("htmlData");
-		baseUrl = AbstractActivity.getStaticServiceFactory().getAPIBaseUrl();
+		baseUrl = AbstractFragment.getStaticServiceFactory().getAPIBaseUrl();
 		webView = new WebView(this);
 		
 		/* Enable JavaScript */
@@ -189,15 +191,15 @@ public class NativeListDetailHtml extends Activity {
 	private void usingCoupiesRedemption(){
 		try{
 			if(coupon!=null){
-				controller = RedemptionController.createInstance(AbstractActivity.getStaticCoupiesSession(), AbstractActivity.getStaticServiceFactory());
+				controller = RedemptionController.createInstance(AbstractFragment.getStaticCoupiesSession(), AbstractFragment.getStaticServiceFactory());
 				controller.redeemCoupon_html(mActivity, coupon, true);
 			}else{
-				AbstractActivity.alert(this,"Ein Fehler ist aufgetreten", "Der ausgewählte Coupon konnte nicht eingel�st werden.", new OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();	
-						webView.loadUrl(couponListHTML);
-					}
-				});
+				AbstractFragment.alert(this, "Ein Fehler ist aufgetreten", "Der ausgewählte Coupon konnte nicht eingel�st werden.", new OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        webView.loadUrl(couponListHTML);
+                    }
+                });
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -228,8 +230,8 @@ public class NativeListDetailHtml extends Activity {
 	        	new Thread() {
 					public void run() {
 						try {
-							htmlData = AbstractActivity.getStaticServiceFactory().createCouponService().getCoupon_html(
-									AbstractActivity.getStaticCoupiesSession(), AbstractActivity.getStaticCoordinate(), coupon.getId());
+							htmlData = AbstractFragment.getStaticServiceFactory().createCouponService().getCoupon_html(
+									AbstractFragment.getStaticCoupiesSession(), AbstractFragment.getStaticCoordinate(), coupon.getId());
 						} catch (CoupiesServiceException e) {
 							e.printStackTrace();
 						}

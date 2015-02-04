@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="google.zxing">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/coupies-framework_lib/libs/google.zxing.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

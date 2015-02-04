@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import de.coupies.demoapp.fragment.CoupiesWebViewFragment;
+import de.coupies.demoapp.fragment.HtmlListFragment;
+import de.coupies.demoapp.fragment.HtmlProfileFragment;
+
 /**
  * Using this PagerAdapter is not mandatory to integrate the COUPIES-Service.
  */
