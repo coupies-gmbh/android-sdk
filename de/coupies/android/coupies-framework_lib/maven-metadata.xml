@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>de.coupies.android</groupId>
+  <artifactId>coupies-framework_lib</artifactId>
+  <version>1.9.11</version>
+  <versioning>
+    <versions>
+      <version>1.9.11</version>
+      <version>1.9.12</version>
+    </versions>
+    <lastUpdated>20150204103619</lastUpdated>
+  </versioning>
+</metadata>
