@@ -1,9 +1,12 @@
 package de.coupies.demoapp.fragment;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -11,6 +14,7 @@ import android.webkit.WebView;
 import de.coupies.demoapp.R;
 import de.coupies.framework.CoupiesServiceException;
 import de.coupies.framework.services.AuthentificationService;
+import de.coupies.framework.utils.CoupiesWebView;
 
 /** 
  * This is the simplest way to integrate coupons in your application: Display one or several coupons in
@@ -26,10 +30,9 @@ public class HtmlProfileFragment extends AbstractFragment {
 	
 	private View rootView;
 
-	private String baseUrl;
 	private String profileHTML;
 	
-	private WebView profileWebView;
+	private CoupiesWebView profileWebView;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,9 +40,10 @@ public class HtmlProfileFragment extends AbstractFragment {
 		rootView = inflater.inflate(R.layout.profile, container, false);
 		
         if(checkForApiCode()) {
-        	profileWebView = (WebView)rootView.findViewById(R.id.profileWebView);
-        	baseUrl = getServiceFactory().getAPIBaseUrl();
-        	
+        	profileWebView = (CoupiesWebView)rootView.findViewById(R.id.profileWebView);
+            profileWebView.init(getActivity(), getCoupiesSession(), getServiceFactory());
+
+
         	/* Enable JavaScript */
         	profileWebView.getSettings().setJavaScriptEnabled(true);
 				/**
@@ -58,7 +62,7 @@ public class HtmlProfileFragment extends AbstractFragment {
 						
 						getActivity().runOnUiThread(new Runnable() {
 							public void run() {
-								profileWebView.loadDataWithBaseURL(baseUrl, profileHTML, MIME_TYPE, ENCODING, baseUrl);
+								profileWebView.loadCoupiesContent(profileHTML);
 							}
 						});
 					}
@@ -97,11 +101,29 @@ public class HtmlProfileFragment extends AbstractFragment {
 				
 				getActivity().runOnUiThread(new Runnable() {
 					public void run() {
-						profileWebView.loadDataWithBaseURL(baseUrl, profileHTML, MIME_TYPE, ENCODING, baseUrl);
+						profileWebView.loadCoupiesContent(profileHTML);
 					}
 				});
 			}
 		}.start();		
 	}
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_item_refresh:
+                refreshView();
+                return true;
+            case R.id.menu_item_open_browser:
+                String url = profileWebView.getUrl();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

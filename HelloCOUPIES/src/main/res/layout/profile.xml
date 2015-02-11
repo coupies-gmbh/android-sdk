@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     >
 
-    <WebView
+    <de.coupies.framework.utils.CoupiesWebView
         android:id="@+id/profileWebView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -163,7 +163,7 @@ public abstract class AbstractFragment extends Fragment {
 	        	refreshView();
 	            return true;
 	        case R.id.menu_item_open_browser:
-	        	System.out.println("URL im Browser �ffnen");
+	        	System.out.println("URL im Browser Öffnen");
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
