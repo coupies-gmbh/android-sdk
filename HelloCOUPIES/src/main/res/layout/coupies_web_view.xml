@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<de.coupies.framework.utils.CoupiesWebView xmlns:android="http://schemas.android.com/apk/res/android"
+<de.coupies.framework.utils.CoupiesWebView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/coupiesWebView"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

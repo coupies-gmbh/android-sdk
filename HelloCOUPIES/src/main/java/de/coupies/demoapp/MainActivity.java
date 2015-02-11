@@ -6,11 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 
 import de.coupies.demoapp.fragment.CoupiesWebViewFragment;
 import de.coupies.demoapp.fragment.HtmlListFragment;
+import de.coupies.demoapp.fragment.HtmlProfileFragment;
 
 /**
  * This is a simple demo-application that shows how to use the COUPIES-framework and integrate
@@ -21,10 +24,13 @@ import de.coupies.demoapp.fragment.HtmlListFragment;
  * @author larseimermacher
  *
  */
-public class MainActivity extends FragmentActivity{
+public class MainActivity extends ActionBarActivity{
 
     IntegrationPagerAdapter integrationPagerAdapter;
     ViewPager mViewPager;
+
+    // Set up the action bar.
+    protected ActionBar actionBar;
     
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,10 @@ public class MainActivity extends FragmentActivity{
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(integrationPagerAdapter);
+
+        // show ActionBar to show menuitems for refresh
+        actionBar = getSupportActionBar();
+        actionBar.setElevation(0);
     }
     
 	@Override
@@ -62,9 +72,9 @@ public class MainActivity extends FragmentActivity{
 		Fragment fragment = integrationPagerAdapter.getFragmentFromViewPager(mViewPager.getCurrentItem());
         if(fragment != null && (fragment instanceof HtmlListFragment)){
            ((HtmlListFragment)fragment).onBackPressed();
-        }else if(fragment != null && (fragment instanceof CoupiesWebViewFragment)){
-            ((CoupiesWebViewFragment)fragment).onBackPressed();
-         }else{
+        }else if(fragment != null && (fragment instanceof CoupiesWebViewFragment)) {
+            ((CoupiesWebViewFragment) fragment).onBackPressed();
+        }else{
         	super.onBackPressed();
         }
 	}
@@ -81,7 +91,8 @@ public class MainActivity extends FragmentActivity{
 	      }
 		super.onActivityResult(arg0, arg1, arg2);
 	}
-	
+
+    @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.main_menu, menu);

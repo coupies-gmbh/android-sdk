@@ -48,5 +48,4 @@
 	<!-- COUPIES own Widgets -->
 	<declare-styleable name="CoupiesWebView">
 	</declare-styleable>
- 
 </resources>
