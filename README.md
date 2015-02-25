@@ -1,4 +1,7 @@
 #COUPIES Android SDK
+
+[![Build Status](http://img.shields.io/travis/coupies-gmbh/android-sdk/master.svg?style=flat)](https://travis-ci.org/coupies-gmbh/android-sdk)
+
 The COUPIES Android SDK enables you to easily integrate coupons in your app. The easiest way is to display everything in our CoupiesWebView (a customized WebView) or in an original WebView and let COUPIES do the rendering. You can customize the appearance with CSS. It is also possible to retrieve the objects directly (e.g. coupons and locations) and do the UI natively.
 
 ##Installation
