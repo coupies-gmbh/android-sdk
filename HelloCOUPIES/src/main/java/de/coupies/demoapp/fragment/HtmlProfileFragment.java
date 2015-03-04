@@ -7,16 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import de.coupies.demoapp.R;
-import de.coupies.framework.CoupiesServiceException;
 import de.coupies.framework.services.AuthentificationService;
 import de.coupies.framework.utils.CoupiesWebView;
 
@@ -53,7 +48,7 @@ public class HtmlProfileFragment extends AbstractFragment {
         	/* Enable JavaScript */
         	profileWebView.getSettings().setJavaScriptEnabled(true);
 
-            profileWebView.loadUrl(getCoupiesService().getUserProfile_request(getCoupiesSession()));
+            profileWebView.loadUrl(getCoupiesService().getUserProfileUrl(getCoupiesSession()));
 
 				/**
 				 * The COUPIES-Framework will use the Internet to get lists of coupons.
@@ -61,31 +56,6 @@ public class HtmlProfileFragment extends AbstractFragment {
 				 * After obtain the response from the COUPIES-Framework you have to load this data into the WebView
 				 * on UI-Thread. [runOnUiThread()]
 				 */
-        /*
-				new Thread() {
-					public void run() {
-						try {
-
-//                            url = getCoupiesService().getUserProfile_request();
-//                            profileHTML = getCoupiesService().goToUrl(url,getCoupiesSession());
-
-
-
-							profileHTML = getCoupiesService().getUserProfile_html(getCoupiesSession());
-						} catch (CoupiesServiceException e) {
-							e.printStackTrace();
-						}
-						
-						getActivity().runOnUiThread(new Runnable() {
-							public void run() {
-								profileWebView.loadCoupiesContent(profileHTML);
-							}
-						});
-					}
-				}.start();
-*/
-
-			
         }
         else {
         	String msg = "please enter your coupies API Key first. see: " +
@@ -107,7 +77,6 @@ public class HtmlProfileFragment extends AbstractFragment {
 	
 	@Override
     public void refreshView() {
-//        profileWebView.loadUrl(getCoupiesService().getUserProfile_request(getCoupiesSession()));
 	    profileWebView.reload();
     }
 
@@ -134,7 +103,6 @@ public class HtmlProfileFragment extends AbstractFragment {
         if (profileWebView.canGoBack()) {
             profileWebView.goBack();
         } else {
-            //Standard Back Button functionality
             getActivity().finish();
         }
 
