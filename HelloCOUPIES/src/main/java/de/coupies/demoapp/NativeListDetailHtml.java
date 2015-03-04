@@ -68,7 +68,7 @@ public class NativeListDetailHtml extends Activity {
 		}
 		
 		public void onBadStickerRead() {
-			AbstractFragment.alert(listenerActivity, "Fehlerhafte Einl�sung", "Der Coupon geh�rt nicht zu dem Coupies-Touchpoint", new OnClickListener() {
+			AbstractFragment.alert(listenerActivity, "Fehlerhafte Einlösung", "Der Coupon gehört nicht zu dem COUPIES-Touchpoint", new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
@@ -118,7 +118,6 @@ public class NativeListDetailHtml extends Activity {
 	
 	private static final String ENCODING = "UTF-8";
 	private static final String MIME_TYPE = "text/html";
-	private String htmlData;
 	
 	private static RedemptionController controller;
 	private CouponRedemptionListener listener;
@@ -145,7 +144,6 @@ public class NativeListDetailHtml extends Activity {
 		 * Get the HTML-Code from the extras 
 		 */
 		Bundle extras = getIntent().getExtras();
-		htmlData = extras.getString("htmlData");
 		baseUrl = AbstractFragment.getStaticServiceFactory().getAPIBaseUrl();
 		webView = new WebView(this);
 		
@@ -184,7 +182,7 @@ public class NativeListDetailHtml extends Activity {
 		/**
 		 * Load the HTML-Code with the WebView
 		 */
-		webView.loadDataWithBaseURL(baseUrl, htmlData, MIME_TYPE, ENCODING, baseUrl);
+		webView.loadUrl(extras.getString("url"));
 		setContentView(webView);
 	}
 	
@@ -194,7 +192,7 @@ public class NativeListDetailHtml extends Activity {
 				controller = RedemptionController.createInstance(AbstractFragment.getStaticCoupiesSession(), AbstractFragment.getStaticServiceFactory());
 				controller.redeemCoupon_html(mActivity, coupon, true);
 			}else{
-				AbstractFragment.alert(this, "Ein Fehler ist aufgetreten", "Der ausgewählte Coupon konnte nicht eingel�st werden.", new OnClickListener() {
+				AbstractFragment.alert(this, "Ein Fehler ist aufgetreten", "Der ausgewählte Coupon konnte nicht eingelöst werden.", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         webView.loadUrl(couponListHTML);
@@ -227,22 +225,7 @@ public class NativeListDetailHtml extends Activity {
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	        case R.id.menu_item_refresh:
-	        	new Thread() {
-					public void run() {
-						try {
-							htmlData = AbstractFragment.getStaticServiceFactory().createCouponService().getCoupon_html(
-									AbstractFragment.getStaticCoupiesSession(), AbstractFragment.getStaticCoordinate(), coupon.getId());
-						} catch (CoupiesServiceException e) {
-							e.printStackTrace();
-						}
-						
-						runOnUiThread(new Runnable() {
-							public void run() {
-								webView.loadDataWithBaseURL(baseUrl, htmlData, MIME_TYPE, ENCODING, baseUrl);
-							}
-						});
-					}
-				}.start();
+                webView.reload();
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

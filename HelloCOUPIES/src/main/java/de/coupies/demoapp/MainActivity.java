@@ -74,7 +74,10 @@ public class MainActivity extends ActionBarActivity{
            ((HtmlListFragment)fragment).onBackPressed();
         }else if(fragment != null && (fragment instanceof CoupiesWebViewFragment)) {
             ((CoupiesWebViewFragment) fragment).onBackPressed();
-        }else{
+        }else if(fragment != null && (fragment instanceof HtmlProfileFragment)) {
+            ((HtmlProfileFragment) fragment).onBackPressed();
+        }
+        else{
         	super.onBackPressed();
         }
 	}

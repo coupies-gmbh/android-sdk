@@ -221,25 +221,29 @@ public class HtmlListFragment extends AbstractFragment {
 				 * After obtain the response from the COUPIES-Framework you have to load this data into the WebView
 				 * on UI-Thread. [runOnUiThread()]
 				 */
-				new Thread() {
-					public void run() {
-						try {
-							couponListHTML = getCoupiesService().getCouponFeed_html(
-									getCoupiesSession(), getCoordinate());
-						} catch (CoupiesServiceException e) {
-							e.printStackTrace();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						
-						getActivity().runOnUiThread(new Runnable() {
-							public void run() {
-								listWebView.loadDataWithBaseURL(baseUrl, couponListHTML, MIME_TYPE, ENCODING, baseUrl);
-							}
-						});
-					}
-				}.start();
-			
+//				new Thread() {
+//					public void run() {
+//						try {
+//							couponListHTML = getCoupiesService().getCouponFeed_html(
+//									getCoupiesSession(), getCoordinate());
+//						} catch (CoupiesServiceException e) {
+//							e.printStackTrace();
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//						}
+//
+//						getActivity().runOnUiThread(new Runnable() {
+//							public void run() {
+//								listWebView.loadDataWithBaseURL(baseUrl, couponListHTML, MIME_TYPE, ENCODING, baseUrl);
+//							}
+//						});
+//					}
+//				}.start();
+
+            listWebView.loadUrl(getCoupiesService().getCouponFeedUrl(getCoupiesSession(), getCoordinate()));
+
+
+
         }
         else {
         	String msg = "please enter your coupies API Key first. see: " +
@@ -260,13 +264,12 @@ public class HtmlListFragment extends AbstractFragment {
 	 * if the back button of the device was clicked
 	 */
 	public void onBackPressed() {
-		if(coupon!=null){
-			listWebView.loadDataWithBaseURL(baseUrl, couponListHTML, MIME_TYPE, ENCODING, baseUrl);
-			coupon=null;
-			onDetailPage = false;
-		}else{
-			getActivity().finish();
-		}
+        if (listWebView.canGoBack()) {
+            listWebView.goBack();
+        } else {
+            //Standard Back Button functionality
+            getActivity().finish();
+        }
 	}
 	
 	/**
@@ -305,25 +308,8 @@ public class HtmlListFragment extends AbstractFragment {
 	
 	@Override
     public void refreshView() {
-		if(onDetailPage)
+
 			listWebView.reload();
-		else{
-			new Thread() {
-				public void run() {
-					try {
-						couponListHTML = getCoupiesService().getCouponFeed_html(
-								getCoupiesSession(), getCoordinate());
-					} catch (CoupiesServiceException e) {
-						e.printStackTrace();
-					}
-					
-					getActivity().runOnUiThread(new Runnable() {
-						public void run() {
-							listWebView.loadDataWithBaseURL(baseUrl, couponListHTML, MIME_TYPE, ENCODING, baseUrl);
-						}
-					});
-				}
-			}.start();		
-		}
+
 	}
 }

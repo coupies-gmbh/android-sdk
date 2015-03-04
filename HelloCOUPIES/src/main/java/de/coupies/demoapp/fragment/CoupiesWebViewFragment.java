@@ -39,24 +39,27 @@ public class CoupiesWebViewFragment extends AbstractFragment {
 			coupiesWebView = (CoupiesWebView)rootView.findViewById(R.id.coupiesWebView);
 			coupiesWebView.init(getActivity(), getCoupiesSession(), getServiceFactory());
 			
-			new Thread() {
-				public void run() {
-					try {
-						couponListHTML = getCoupiesService()
-							.getCouponFeed_html(getCoupiesSession(), getCoordinate());
-					} catch (CoupiesServiceException e) {
-						e.printStackTrace();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-					getActivity().runOnUiThread(new Runnable() {
-						public void run() {
-							coupiesWebView.loadCoupiesContent(couponListHTML);
-						}
-					});
-				}
-			}.start();
+//			new Thread() {
+//				public void run() {
+//					try {
+//						couponListHTML = getCoupiesService()
+//							.getCouponFeed_html(getCoupiesSession(), getCoordinate());
+//					} catch (CoupiesServiceException e) {
+//						e.printStackTrace();
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//
+//					getActivity().runOnUiThread(new Runnable() {
+//						public void run() {
+//							coupiesWebView.loadCoupiesContent(couponListHTML);
+//						}
+//					});
+//				}
+//			}.start();
+
+            coupiesWebView.loadUrl(getCoupiesService().getCouponFeedUrl(getCoupiesSession(), getCoordinate()));
+
 		}else {
         	String msg = "please enter your coupies API Key first. see: " +
 					"de.coupies.demoapp.fragment.AbstractFragment";
@@ -76,8 +79,12 @@ public class CoupiesWebViewFragment extends AbstractFragment {
 	 * if the back button of the device was clicked
 	 */
 	public void onBackPressed() {
-		if(coupiesWebView.onBackPressed())
-			getActivity().finish();
+        if (coupiesWebView.canGoBack()) {
+            coupiesWebView.goBack();
+        } else {
+            //Standard Back Button functionality
+            getActivity().finish();
+        }
 	}
 	
 	private CouponService getCoupiesService() {
@@ -90,34 +97,41 @@ public class CoupiesWebViewFragment extends AbstractFragment {
 		// Calls the RedemptionController with the requestCode of the redemption
 		coupiesWebView.handleRedemeCallback(requestCode, resultCode, data);
     }
-	
+
 	/**
 	 * This method will reload the Current HTML after using the "refresh" button in menu
 	 * If you don't want this feature you can delete the following code
 	 */
 	@Override
     public void refreshView() {
-		if(coupiesWebView.isDetailView())
-			coupiesWebView.reload();
-		else{
-			new Thread() {
-				public void run() {
-					try {
-						couponListHTML = getCoupiesService()
-							 .getCouponFeed_html(getCoupiesSession(), getCoordinate());
-					} catch (CoupiesServiceException e) {
-						e.printStackTrace();
-					}
-					
-					getActivity().runOnUiThread(new Runnable() {
-						public void run() {
-							coupiesWebView.clearHtmlListContent();
-							coupiesWebView.loadCoupiesContent(couponListHTML);
-						}
-					});
-				}
-			}.start();		
-		}
+//		if(coupiesWebView.isDetailView())
+//			coupiesWebView.reload();
+//		else{
+////			new Thread() {
+////				public void run() {
+////					try {
+////						couponListHTML = getCoupiesService()
+////							 .getCouponFeed_html(getCoupiesSession(), getCoordinate());
+////					} catch (CoupiesServiceException e) {
+////						e.printStackTrace();
+////					}
+////
+////					getActivity().runOnUiThread(new Runnable() {
+////						public void run() {
+////							coupiesWebView.clearHtmlListContent();
+////							coupiesWebView.loadCoupiesContent(couponListHTML);
+////						}
+////					});
+////				}
+////			}.start();
+//
+////            coupiesWebView.loadUrl(getCoupiesService().getCouponFeedUrl(getCoupiesSession(), getCoordinate()));
+//
+//            coupiesWebView.reload();
+//
+//        }
+
+        coupiesWebView.reload();
 	}
 	
 	@Override

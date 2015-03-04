@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.coupies.demoapp.R;
 import de.coupies.framework.CoupiesServiceException;
@@ -38,6 +42,8 @@ public class HtmlProfileFragment extends AbstractFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.profile, container, false);
+
+
 		
         if(checkForApiCode()) {
         	profileWebView = (CoupiesWebView)rootView.findViewById(R.id.profileWebView);
@@ -46,15 +52,25 @@ public class HtmlProfileFragment extends AbstractFragment {
 
         	/* Enable JavaScript */
         	profileWebView.getSettings().setJavaScriptEnabled(true);
+
+            profileWebView.loadUrl(getCoupiesService().getUserProfile_request(getCoupiesSession()));
+
 				/**
 				 * The COUPIES-Framework will use the Internet to get lists of coupons.
 				 * To use the Internet connection on Android you have to start an (background thread) Off-UI-Thread.
 				 * After obtain the response from the COUPIES-Framework you have to load this data into the WebView
 				 * on UI-Thread. [runOnUiThread()]
 				 */
+        /*
 				new Thread() {
 					public void run() {
 						try {
+
+//                            url = getCoupiesService().getUserProfile_request();
+//                            profileHTML = getCoupiesService().goToUrl(url,getCoupiesSession());
+
+
+
 							profileHTML = getCoupiesService().getUserProfile_html(getCoupiesSession());
 						} catch (CoupiesServiceException e) {
 							e.printStackTrace();
@@ -67,6 +83,8 @@ public class HtmlProfileFragment extends AbstractFragment {
 						});
 					}
 				}.start();
+*/
+
 			
         }
         else {
@@ -89,24 +107,9 @@ public class HtmlProfileFragment extends AbstractFragment {
 	
 	@Override
     public void refreshView() {
-		new Thread() {
-			public void run() {
-				try {
-					profileHTML = getCoupiesService().getUserProfile_html(getCoupiesSession());
-				} catch (CoupiesServiceException e) {
-					e.printStackTrace();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				getActivity().runOnUiThread(new Runnable() {
-					public void run() {
-						profileWebView.loadCoupiesContent(profileHTML);
-					}
-				});
-			}
-		}.start();		
-	}
+//        profileWebView.loadUrl(getCoupiesService().getUserProfile_request(getCoupiesSession()));
+	    profileWebView.reload();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -126,4 +129,15 @@ public class HtmlProfileFragment extends AbstractFragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public void onBackPressed() {
+        if (profileWebView.canGoBack()) {
+            profileWebView.goBack();
+        } else {
+            //Standard Back Button functionality
+            getActivity().finish();
+        }
+
+    }
+
 }
