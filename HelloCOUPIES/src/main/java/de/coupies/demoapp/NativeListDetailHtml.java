@@ -231,4 +231,17 @@ public class NativeListDetailHtml extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+
+    /**
+     * This method will go to the last website instead of closing the activity
+     * if the back button of the device was clicked
+     */
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

@@ -53,7 +53,7 @@ public class WebViewListFragment extends AbstractFragment {
 	}
 	
 	/**
-	 * This method will reload the HTML-List instead of closing the activity
+	 * This method will go to the last website instead of closing the activity
 	 * if the back button of the device was clicked
 	 */
 	public void onBackPressed() {

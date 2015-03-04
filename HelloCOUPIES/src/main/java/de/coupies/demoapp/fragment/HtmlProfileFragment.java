@@ -105,7 +105,6 @@ public class HtmlProfileFragment extends AbstractFragment {
         } else {
             getActivity().finish();
         }
-
     }
 
 }
