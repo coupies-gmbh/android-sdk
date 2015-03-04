@@ -1,4 +1,4 @@
-package de.coupies.demoapp;
+package de.coupies.demoapp.fragment;
 
 import java.util.List;
 
@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import de.coupies.demoapp.NativeListDetailHtml;
+import de.coupies.demoapp.R;
 import de.coupies.demoapp.fragment.AbstractFragment;
 import de.coupies.framework.CoupiesServiceException;
 import de.coupies.framework.beans.Offer;

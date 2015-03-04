@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import de.coupies.demoapp.fragment.NativeListFragment;
 import de.coupies.demoapp.fragment.WebViewListFragment;
 import de.coupies.demoapp.fragment.HtmlProfileFragment;
 
