@@ -16,6 +16,7 @@ android:
     - extra-google-google_play_services
 
     - list sdk --no-ui --all --extended
+
  
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
