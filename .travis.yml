@@ -15,9 +15,15 @@ android:
     # Additional components
     - extra-google-google_play_services
 
-    - list sdk --no-ui --all --extended
+before_install:
 
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    # - sys-img-armeabi-v7a-android-19
-    # - sys-img-x86-android-17
+# for gradle output style
+  - export TERM=dumb
+
+# environment info
+  - ./gradlew -v
+  - uname -a
+
+# Let's try to build...
+script: 
+    - ./gradlew tasks --all
