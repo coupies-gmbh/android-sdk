@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import de.coupies.demoapp.R;
-import de.coupies.framework.CoupiesServiceException;
 import de.coupies.framework.services.CouponService;
 import de.coupies.framework.utils.CoupiesWebView;
 
@@ -22,12 +21,12 @@ import de.coupies.framework.utils.CoupiesWebView;
  * 
  * @author larseimermacher
  */
-public class CoupiesWebViewFragment extends AbstractFragment {
+public class WebViewListFragment extends AbstractFragment {
 
 	private View rootView;
 
 	private CoupiesWebView coupiesWebView;
-	String couponListHTML = "<html><body><p>no content</p></body></html>";
+//	String couponListHTML = "<html><body><p>no content</p></body></html>";
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,26 +37,8 @@ public class CoupiesWebViewFragment extends AbstractFragment {
 		if(checkForApiCode()) {
 			coupiesWebView = (CoupiesWebView)rootView.findViewById(R.id.coupiesWebView);
 			coupiesWebView.init(getActivity(), getCoupiesSession(), getServiceFactory());
-			
-			new Thread() {
-				public void run() {
-					try {
-						couponListHTML = getCoupiesService()
-							.getCouponFeed_html(getCoupiesSession(), getCoordinate());
-					} catch (CoupiesServiceException e) {
-						e.printStackTrace();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-					getActivity().runOnUiThread(new Runnable() {
-						public void run() {
-							coupiesWebView.loadCoupiesContent(couponListHTML);
-						}
-					});
-				}
-			}.start();
-		}else {
+	        coupiesWebView.loadUrl(getCoupiesService().getCouponFeedUrl(getCoupiesSession(), getCoordinate()));
+		} else {
         	String msg = "please enter your coupies API Key first. see: " +
 					"de.coupies.demoapp.fragment.AbstractFragment";
     		Log.e("CoupiesDemoApp", msg);
@@ -72,12 +53,15 @@ public class CoupiesWebViewFragment extends AbstractFragment {
 	}
 	
 	/**
-	 * This method will reload the HTML-List instead of closing the activity
+	 * This method will go to the last website instead of closing the activity
 	 * if the back button of the device was clicked
 	 */
 	public void onBackPressed() {
-		if(coupiesWebView.onBackPressed())
-			getActivity().finish();
+        if (coupiesWebView.canGoBack()) {
+            coupiesWebView.goBack();
+        } else {
+            getActivity().finish();
+        }
 	}
 	
 	private CouponService getCoupiesService() {
@@ -90,34 +74,14 @@ public class CoupiesWebViewFragment extends AbstractFragment {
 		// Calls the RedemptionController with the requestCode of the redemption
 		coupiesWebView.handleRedemeCallback(requestCode, resultCode, data);
     }
-	
+
 	/**
 	 * This method will reload the Current HTML after using the "refresh" button in menu
 	 * If you don't want this feature you can delete the following code
 	 */
 	@Override
     public void refreshView() {
-		if(coupiesWebView.isDetailView())
-			coupiesWebView.reload();
-		else{
-			new Thread() {
-				public void run() {
-					try {
-						couponListHTML = getCoupiesService()
-							 .getCouponFeed_html(getCoupiesSession(), getCoordinate());
-					} catch (CoupiesServiceException e) {
-						e.printStackTrace();
-					}
-					
-					getActivity().runOnUiThread(new Runnable() {
-						public void run() {
-							coupiesWebView.clearHtmlListContent();
-							coupiesWebView.loadCoupiesContent(couponListHTML);
-						}
-					});
-				}
-			}.start();		
-		}
+        coupiesWebView.reload();
 	}
 	
 	@Override

@@ -3,7 +3,6 @@ package de.coupies.demoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -11,8 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-import de.coupies.demoapp.fragment.CoupiesWebViewFragment;
-import de.coupies.demoapp.fragment.HtmlListFragment;
+import de.coupies.demoapp.fragment.WebViewListFragment;
 import de.coupies.demoapp.fragment.HtmlProfileFragment;
 
 /**
@@ -70,11 +68,12 @@ public class MainActivity extends ActionBarActivity{
 	@Override
 	public void onBackPressed() {
 		Fragment fragment = integrationPagerAdapter.getFragmentFromViewPager(mViewPager.getCurrentItem());
-        if(fragment != null && (fragment instanceof HtmlListFragment)){
-           ((HtmlListFragment)fragment).onBackPressed();
-        }else if(fragment != null && (fragment instanceof CoupiesWebViewFragment)) {
-            ((CoupiesWebViewFragment) fragment).onBackPressed();
-        }else{
+         if(fragment != null && (fragment instanceof WebViewListFragment )) {
+            ((WebViewListFragment) fragment).onBackPressed();
+        }else if(fragment != null && (fragment instanceof HtmlProfileFragment)) {
+            ((HtmlProfileFragment) fragment).onBackPressed();
+        }
+        else{
         	super.onBackPressed();
         }
 	}

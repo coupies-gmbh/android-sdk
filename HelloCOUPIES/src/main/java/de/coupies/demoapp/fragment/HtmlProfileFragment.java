@@ -9,10 +9,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
+
 
 import de.coupies.demoapp.R;
-import de.coupies.framework.CoupiesServiceException;
 import de.coupies.framework.services.AuthentificationService;
 import de.coupies.framework.utils.CoupiesWebView;
 
@@ -38,6 +37,8 @@ public class HtmlProfileFragment extends AbstractFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.profile, container, false);
+
+
 		
         if(checkForApiCode()) {
         	profileWebView = (CoupiesWebView)rootView.findViewById(R.id.profileWebView);
@@ -46,28 +47,15 @@ public class HtmlProfileFragment extends AbstractFragment {
 
         	/* Enable JavaScript */
         	profileWebView.getSettings().setJavaScriptEnabled(true);
+
+            profileWebView.loadUrl(getCoupiesService().getUserProfileUrl(getCoupiesSession()));
+
 				/**
 				 * The COUPIES-Framework will use the Internet to get lists of coupons.
 				 * To use the Internet connection on Android you have to start an (background thread) Off-UI-Thread.
 				 * After obtain the response from the COUPIES-Framework you have to load this data into the WebView
 				 * on UI-Thread. [runOnUiThread()]
 				 */
-				new Thread() {
-					public void run() {
-						try {
-							profileHTML = getCoupiesService().getUserProfile_html(getCoupiesSession());
-						} catch (CoupiesServiceException e) {
-							e.printStackTrace();
-						}
-						
-						getActivity().runOnUiThread(new Runnable() {
-							public void run() {
-								profileWebView.loadCoupiesContent(profileHTML);
-							}
-						});
-					}
-				}.start();
-			
         }
         else {
         	String msg = "please enter your coupies API Key first. see: " +
@@ -89,24 +77,8 @@ public class HtmlProfileFragment extends AbstractFragment {
 	
 	@Override
     public void refreshView() {
-		new Thread() {
-			public void run() {
-				try {
-					profileHTML = getCoupiesService().getUserProfile_html(getCoupiesSession());
-				} catch (CoupiesServiceException e) {
-					e.printStackTrace();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				getActivity().runOnUiThread(new Runnable() {
-					public void run() {
-						profileWebView.loadCoupiesContent(profileHTML);
-					}
-				});
-			}
-		}.start();		
-	}
+	    profileWebView.reload();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -126,4 +98,13 @@ public class HtmlProfileFragment extends AbstractFragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public void onBackPressed() {
+        if (profileWebView.canGoBack()) {
+            profileWebView.goBack();
+        } else {
+            getActivity().finish();
+        }
+    }
+
 }

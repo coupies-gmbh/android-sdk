@@ -1,4 +1,4 @@
-package de.coupies.demoapp;
+package de.coupies.demoapp.fragment;
 
 import java.util.List;
 
@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import de.coupies.demoapp.NativeListDetailHtml;
+import de.coupies.demoapp.R;
 import de.coupies.demoapp.fragment.AbstractFragment;
 import de.coupies.framework.CoupiesServiceException;
 import de.coupies.framework.beans.Offer;
@@ -30,9 +32,7 @@ import de.coupies.framework.services.CouponService;
 public class NativeListFragment extends AbstractFragment {
 
 	private List<Offer> offers;
-	private String couponHtml;
-	private Intent htmlIntent;
-	
+
 	private View rootView;
 	
 	@Override
@@ -93,34 +93,11 @@ public class NativeListFragment extends AbstractFragment {
 					long id) {
 				final Offer clickedOffer = (Offer) adapter.getItemAtPosition(position);
 
-				htmlIntent = new Intent();
-				couponHtml="";
-				
-				/**
-				 * Request the COUPIES-Framework for the HTML-Code of the selected coupon.
-				 * If the HTML-Code is received you have to start the NativeListDetailHtml with
-				 * this HTML-Code inside the extras of the intent.
-				 */
-				new Thread() {
-					public void run() {
-						try {
-							couponHtml = getCoupiesService().getCoupon_html(
-									getCoupiesSession(), getCoordinate(), clickedOffer.getId());
-						} catch (CoupiesServiceException e) {
-							e.printStackTrace();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						
-						getActivity().runOnUiThread(new Runnable() {
-							public void run() {
-								htmlIntent.putExtra("htmlData", couponHtml);
-								htmlIntent.setClass(getActivity(), NativeListDetailHtml.class);
-								startActivity(htmlIntent);
-							}
-						});
-					}
-				}.start();
+                String couponUrl = getCoupiesService().getCouponUrl(getCoupiesSession(), getCoordinate(), clickedOffer.getId());
+                Intent intent = new Intent();
+                intent.putExtra("url", couponUrl);
+                intent.setClass(getActivity(), NativeListDetailHtml.class);
+				startActivity(intent);
 			}
 		});
 	}
