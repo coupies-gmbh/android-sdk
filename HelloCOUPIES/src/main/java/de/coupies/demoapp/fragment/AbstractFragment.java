@@ -32,7 +32,7 @@ public abstract class AbstractFragment extends Fragment {
 
 	private static String PARTNERS_USER_TOKEN = null;
 	private static final String API_KEY = ""; // TODO: please insert your COUPIES API Key here
-	private static final String API_LEVEL = "4";
+	private static final String API_LEVEL = "6";
 	
 	private static final float LONGITUDE = 6.958237F;
 	private static final float LATITUDE = 50.937056F;
