@@ -114,6 +114,18 @@ public class NativeListDetailHtml extends Activity {
 				}
 	    	}
 	    }
+
+        @JavascriptInterface
+        public void getRemaining(String mRemaining){
+            if(mRemaining != null){
+                try{
+                    remaining = Integer.parseInt(mRemaining);
+                    coupon.setRemaining(remaining);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 	}
 	
 	private static final String ENCODING = "UTF-8";
@@ -123,9 +135,10 @@ public class NativeListDetailHtml extends Activity {
 	private CouponRedemptionListener listener;
 	private Coupon coupon;
 	private Activity mActivity;
-	
-	private int actionId;
-	private int couponId;
+
+	private int actionId,
+                couponId,
+                remaining;
 	private boolean acceptsSticker;
 	
 	private String baseUrl;
@@ -175,7 +188,8 @@ public class NativeListDetailHtml extends Activity {
 				webView.loadUrl("javascript:window.COUPON.getCouponId(document.getElementsByName('cp:coupon_id')[0].getAttribute('content'));");
 				webView.loadUrl("javascript:window.COUPON.getClosestLocationAcceptSticker(document.getElementsByName('cp:closest_location_accepts_sticker')[0].getAttribute('content'));");
 				webView.loadUrl("javascript:window.COUPON.getCouponAction(document.getElementsByName('cp:action')[0].getAttribute('content'));");
-				super.onPageFinished(view, url);
+                webView.loadUrl("javascript:window.COUPON.getRemaining(document.getElementsByName('cp:remaining')[0].getAttribute('content'));");
+                super.onPageFinished(view, url);
 			}
 		});
 		
