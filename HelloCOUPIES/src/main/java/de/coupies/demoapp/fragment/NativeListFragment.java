@@ -3,6 +3,7 @@ package de.coupies.demoapp.fragment;
 import java.util.List;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,6 +55,9 @@ public class NativeListFragment extends AbstractFragment {
 						try {
 							offers = getCoupiesService().getCouponFeed(
 									getCoupiesSession(), getCoordinate());
+
+							System.out.println("offer labib"+getCoupiesService().getCouponFeed(
+									getCoupiesSession(), getCoordinate()));
 						} catch (CoupiesServiceException e) {
 							e.printStackTrace();
 						} catch (Exception e) {
@@ -85,7 +89,23 @@ public class NativeListFragment extends AbstractFragment {
 
 	private void createListView(List<Offer> offers, View view) {
 		ListView listView= (ListView) view.findViewById(R.id.coupon_list_view);
-        listView.setAdapter(new ArrayAdapter<Offer>(getActivity(), 
+		System.out.println("labib" + offers);
+		if(offers==null) {
+			AlertDialog ad = new AlertDialog.Builder(getActivity())
+					.create();
+			ad.setCancelable(false);
+			ad.setTitle("Error");
+			ad.setMessage("introuvable");
+			ad.setButton("OK", new DialogInterface.OnClickListener() {
+
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			});
+			ad.show();
+		}
+		else{
+		listView.setAdapter(new ArrayAdapter<Offer>(getActivity(),
         		android.R.layout.simple_list_item_1, offers));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,7 +119,8 @@ public class NativeListFragment extends AbstractFragment {
                 intent.setClass(getActivity(), NativeListDetailHtml.class);
 				startActivity(intent);
 			}
-		});
+		});}
+
 	}
 
 	private CouponService getCoupiesService() {
