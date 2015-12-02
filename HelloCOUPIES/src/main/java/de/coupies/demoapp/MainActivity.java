@@ -29,18 +29,18 @@ public class MainActivity extends ActionBarActivity{
 
     // Set up the action bar.
     protected ActionBar actionBar;
-    
+
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
-    	setContentView(R.layout.activity_main);
-        
-    	((PagerTabStrip)findViewById(R.id.pager_tab_strip)).setTabIndicatorColorResource(R.color.coupies_tabindicator);
-    	
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ((PagerTabStrip) findViewById(R.id.pager_tab_strip)).setTabIndicatorColorResource(R.color.coupies_tabindicator);
+
         // Create the adapter that will return a fragment for each of the two possible integrations
-    	integrationPagerAdapter = new IntegrationPagerAdapter(getSupportFragmentManager());
-    	integrationPagerAdapter.preloadFragments();
-  
+        integrationPagerAdapter = new IntegrationPagerAdapter(getSupportFragmentManager());
+        integrationPagerAdapter.preloadFragments();
+
         // This ViewPager holds the two Fragments whitch shows the possible integrations
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setOffscreenPageLimit(3);
@@ -50,51 +50,50 @@ public class MainActivity extends ActionBarActivity{
         actionBar = getSupportActionBar();
         actionBar.setElevation(0);
     }
-    
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState) {
-	    super.onSaveInstanceState(savedInstanceState);
-	}
-
-	@Override
-	public void onRestoreInstanceState(Bundle savedInstanceState) {
-	    super.onRestoreInstanceState(savedInstanceState);
-	}
-	
-	/*
-	 * Overriding this method is not necessary if you integrate one of the two possible solutions.
-	 * This method will only start the onBackPress-method of HmtlListFragment
-	 */
-	@Override
-	public void onBackPressed() {
-		Fragment fragment = integrationPagerAdapter.getFragmentFromViewPager(mViewPager.getCurrentItem());
-         if(fragment != null && (fragment instanceof WebViewListFragment )) {
-            ((WebViewListFragment) fragment).onBackPressed();
-        }else if(fragment != null && (fragment instanceof HtmlProfileFragment)) {
-            ((HtmlProfileFragment) fragment).onBackPressed();
-        }
-        else{
-        	super.onBackPressed();
-        }
-	}
-	
-	/*
-	 * Overriding this method is not necessary if you integrate one of the two possible solutions. 
-	 * This method will only start the onActivityResult-method of the Fragments
-	 */
-	@Override
-	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
-		Fragment fragment = integrationPagerAdapter.getFragmentFromViewPager(mViewPager.getCurrentItem());
-	      if(fragment != null){
-	            fragment.onActivityResult(arg0, arg1, arg2);
-	      }
-		super.onActivityResult(arg0, arg1, arg2);
-	}
 
     @Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.main_menu, menu);
-	    return true;
-	}
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    /*
+     * Overriding this method is not necessary if you integrate one of the two possible solutions.
+     * This method will only start the onBackPress-method of HmtlListFragment
+     */
+    @Override
+    public void onBackPressed() {
+        Fragment fragment = integrationPagerAdapter.getFragmentFromViewPager(mViewPager.getCurrentItem());
+        if (fragment != null && (fragment instanceof WebViewListFragment)) {
+            ((WebViewListFragment) fragment).onBackPressed();
+        } else if (fragment != null && (fragment instanceof HtmlProfileFragment)) {
+            ((HtmlProfileFragment) fragment).onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    /*
+     * Overriding this method is not necessary if you integrate one of the two possible solutions.
+     * This method will only start the onActivityResult-method of the Fragments
+     */
+    @Override
+    protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+        Fragment fragment = integrationPagerAdapter.getFragmentFromViewPager(mViewPager.getCurrentItem());
+        if (fragment != null) {
+            fragment.onActivityResult(arg0, arg1, arg2);
+        }
+        super.onActivityResult(arg0, arg1, arg2);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
 }
