@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#000"
     >
 
     <de.coupies.framework.utils.CoupiesWebView
         android:id="@+id/profileWebView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/errorMsg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="please enter your coupies API Key first"
+        android:textSize="27dp"
+        android:layout_below="@id/profileWebView"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
-</LinearLayout>
+</RelativeLayout>
