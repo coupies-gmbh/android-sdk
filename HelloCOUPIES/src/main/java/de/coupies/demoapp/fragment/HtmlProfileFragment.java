@@ -1,6 +1,5 @@
 package de.coupies.demoapp.fragment;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,75 +8,66 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.TextView;
 
 import de.coupies.demoapp.R;
 import de.coupies.framework.services.AuthentificationService;
 import de.coupies.framework.utils.CoupiesWebView;
 
-/** 
+/**
  * This is the simplest way to integrate coupons in your application: Display one or several coupons in
  * a WebView. Clicks on "redeem now" are intercepted and delegated to the COUPIES-framework to handle
  * redemtions using the COUPIES-Touchpoint. This example uses the HTML representation of the COUPIES-API only.
- * 
+ *
  * @author larseimermacher
  */
 public class HtmlProfileFragment extends AbstractFragment {
-		
-	private static final String ENCODING = "UTF-8";
-	private static final String MIME_TYPE = "text/html";
-	
-	private View rootView;
 
-	private String profileHTML;
-	
-	private CoupiesWebView profileWebView;
-	
-	@Override
+    private View rootView;
+
+    private CoupiesWebView profileWebView;
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-		rootView = inflater.inflate(R.layout.profile, container, false);
+                             Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.profile, container, false);
+        profileWebView = (CoupiesWebView) rootView.findViewById(R.id.profileWebView);
 
 
-		
-        if(checkForApiCode()) {
-        	profileWebView = (CoupiesWebView)rootView.findViewById(R.id.profileWebView);
+        if(!(getCoupiesApiKey().equals(""))) {
             profileWebView.init(getActivity(), getCoupiesSession(), getServiceFactory());
 
 
         	/* Enable JavaScript */
-        	profileWebView.getSettings().setJavaScriptEnabled(true);
-
+            profileWebView.getSettings().setJavaScriptEnabled(true);
             profileWebView.loadUrl(getCoupiesService().getUserProfileUrl(getCoupiesSession()));
+            /**
+             * The COUPIES-Framework will use the Internet to get lists of coupons.
+             * To use the Internet connection on Android you have to start an (background thread) Off-UI-Thread.
+             * After obtain the response from the COUPIES-Framework you have to load this data into the WebView
+             * on UI-Thread. [runOnUiThread()]
+             */
+        } else {
+            String msg = "please enter your coupies API Key first. see: " +
+                    "de.coupies.demoapp.fragment.AbstractFragment";
+            Log.e("CoupiesDemoApp", msg);
+            TextView textView = (TextView) rootView.findViewById(R.id.errorMsg);
+            textView.setVisibility(View.VISIBLE);
+            profileWebView.setVisibility(View.GONE);
 
-				/**
-				 * The COUPIES-Framework will use the Internet to get lists of coupons.
-				 * To use the Internet connection on Android you have to start an (background thread) Off-UI-Thread.
-				 * After obtain the response from the COUPIES-Framework you have to load this data into the WebView
-				 * on UI-Thread. [runOnUiThread()]
-				 */
+
         }
-        else {
-        	String msg = "please enter your coupies API Key first. see: " +
-					"de.coupies.demoapp.fragment.AbstractFragment";
-    		Log.e("CoupiesDemoApp", msg);
-			new AlertDialog.Builder(getActivity()).setMessage(
-        	    msg).create().show();
-        }
-		return rootView;
+        return rootView;
     }
 
-	private boolean checkForApiCode() {
-		return getCoupiesApiKey() != null;
-	}
 
-	private AuthentificationService getCoupiesService() {
-		return getServiceFactory().createAuthentificationService();
-	}
-	
-	@Override
+    private AuthentificationService getCoupiesService() {
+        return getServiceFactory().createAuthentificationService();
+    }
+
+    @Override
     public void refreshView() {
-	    profileWebView.reload();
+        profileWebView.reload();
     }
 
     @Override

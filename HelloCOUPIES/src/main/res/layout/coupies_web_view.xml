@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<de.coupies.framework.utils.CoupiesWebView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/coupiesWebView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#000">
+
+    <de.coupies.framework.utils.CoupiesWebView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/coupiesWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/errorMsg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/coupiesWebView"
+        android:text="please enter your coupies API Key first"
+        android:textSize="27dp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+</RelativeLayout>
