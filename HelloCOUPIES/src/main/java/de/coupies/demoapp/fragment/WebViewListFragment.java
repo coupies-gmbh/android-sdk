@@ -1,6 +1,5 @@
 package de.coupies.demoapp.fragment;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import de.coupies.demoapp.R;
 import de.coupies.framework.services.CouponService;
@@ -26,32 +26,32 @@ public class WebViewListFragment extends AbstractFragment {
 	private View rootView;
 
 	private CoupiesWebView coupiesWebView;
-//	String couponListHTML = "<html><body><p>no content</p></body></html>";
-	
+
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
 		rootView = inflater.inflate(R.layout.coupies_web_view, container, false);
-		
-		if(checkForApiCode()) {
-			coupiesWebView = (CoupiesWebView)rootView.findViewById(R.id.coupiesWebView);
+		coupiesWebView = (CoupiesWebView)rootView.findViewById(R.id.coupiesWebView);
+
+		if(!(getCoupiesApiKey().equals(""))) {
 			coupiesWebView.init(getActivity(), getCoupiesSession(), getServiceFactory());
 	        coupiesWebView.loadUrl(getCoupiesService().getCouponFeedUrl(getCoupiesSession(), getCoordinate()));
+
 		} else {
-        	String msg = "please enter your coupies API Key first. see: " +
+			String msg = "please enter your coupies API Key first. see: " +
 					"de.coupies.demoapp.fragment.AbstractFragment";
-    		Log.e("CoupiesDemoApp", msg);
-			new AlertDialog.Builder(getActivity()).setMessage(msg).create().show();
-        }
+			Log.e("CoupiesDemoApp", msg);
+			TextView textView = (TextView) rootView.findViewById(R.id.errorMsg);
+			textView.setVisibility(View.VISIBLE);
+			coupiesWebView.setVisibility(View.GONE);
+
+		}
 		
 		return rootView;
     }
 
-	private boolean checkForApiCode() {
-		return getCoupiesApiKey() != null;
-	}
-	
+
 	/**
 	 * This method will go to the last website instead of closing the activity
 	 * if the back button of the device was clicked
