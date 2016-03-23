@@ -1,3 +1,17 @@
+# In Case Google Play Services are not integrated, we have tu surpress warnings.
+-dontwarn com.google.android.gms.**
+
+# Coupies specific classes
+-keep class de.coupies.** { *; }
+
+# Gson specific classes
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class sun.misc.Unsafe { *; }
+
+
+
+
 -keep class * extends java.util.ListResourceBundle {
     protected Object[][] getContents();
 }
@@ -18,5 +32,3 @@
 -keep class !android.support.v7.internal.view.menu.MenuBuilder, !android.support.v7.internal.view.menu.SubMenuBuilder, android.support.v7.** { *; }
 -keep interface android.support.v7.** { *; }
 
--keep class de.coupies.** { *; }
--keepattributes Signature

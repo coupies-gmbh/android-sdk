@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 21
     buildToolsVersion '21.1.1'
@@ -15,21 +16,32 @@ android {
     }
 
     buildTypes {
+        dev{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
         release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
-    }
 }
 
 repositories {
     flatDir {
         dirs 'libs'
     }
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 dependencies {
-    compile(name:'coupies-framework_lib-1.9.20', ext:'aar')
+    compile (name:'coupies-framework_lib-1.9.21', ext:'aar')
+    compile ('com.michaelpardo:activeandroid:3.1.0-SNAPSHOT')
+    compile ('com.google.code.gson:gson:2.5')
     compile 'com.android.support:appcompat-v7:21.0.2'
-    compile 'com.google.android.gms:play-services:6.5.87'
+}
 }
