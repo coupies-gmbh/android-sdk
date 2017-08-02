@@ -1,20 +1,28 @@
-#COUPIES Android SDK
+# COUPIES Android SDK
 
 [![Build Status](http://img.shields.io/travis/coupies-gmbh/android-sdk/master.svg?style=flat)](https://travis-ci.org/coupies-gmbh/android-sdk)
 
-The COUPIES Android SDK enables you to easily integrate coupons in your app. The easiest way is to display everything in our CoupiesWebView (a customized WebView) or in an original WebView and let COUPIES do the rendering. You can customize the appearance with CSS. It is also possible to retrieve the objects directly (e.g. coupons and locations) and do the UI natively.
+The COUPIES Android SDK enables you to easily integrate coupons in your app. 
+The easiest way is to display everything in our CoupiesWebView 
+(a customized WebView) or in an original WebView and let COUPIES do the 
+rendering. You can customize the appearance with CSS. It is also possible to 
+retrieve the objects directly (e.g. coupons and locations) and do the UI 
+natively.
 
-##Installation
+## Installation
 
-We recommend gradle builds. If you wish to integrate COUPIES based on the Eclipse IDE please conatct us at felix.schul@coupies.de for more information.
+We recommend gradle builds. If you wish to integrate COUPIES based on the 
+Eclipse IDE please contact us at marcel.bender@coupies.de for more information.
 
-###Import SDK to your project
+### Import SDK to your project
 
 You can import the SDK using Maven or manually. We recomment the first option.
 
-####Import using Maven
+#### Import using Maven
 
-The easiest way to install the COUPIES Android SDK ist to use maven import. Therefor you have to add the following lines to your gradle file:
+The easiest way to install the COUPIES Android SDK ist to use maven import. 
+Therefor you have to add the following lines to your gradle file:
+
 ```xml
 repositories {
     mavenCentral()
@@ -28,13 +36,14 @@ dependencies {
 }
 ```
 
-####Import manually
+#### Import manually
 
 To install the COUPIES Android SDK without Maven, follow these steps:
 
 1. Download the latest stable version.
 2. Copy the coupies-framework_lib-\<version\>.aar from HelloCOUPIES/libs into the libs folder of your project.
 3. Add the following lines to your gradle file:
+
 ```xml
 repositories {
     flatDir {
@@ -47,7 +56,7 @@ dependencies {
 }
 ```
 
-###Add these permissions in your Manifest:
+### Add these permissions in your Manifest:  
 ```xml
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -58,13 +67,14 @@ dependencies {
 <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 ```
 
-###Add these features in your Manifest:
+### Add these features in your Manifest:  
 ```xml
 <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
 <uses-feature android:name="android.hardware.camera" android:required="true" />
 <uses-feature android:name="android.hardware.nfc" android:required="false" />
 ```
-###Add this metadata and activitys in your Manifest:
+
+### Add this metadata and activitys in your Manifest:  
 ```xml
 <meta-data  android:name=”com.google.android.gms.version” 
             android:value=”@integer/google_play_service_version”/>
@@ -104,9 +114,9 @@ dependencies {
 </activity>
 ```
 
-##Usage
+## Usage
 
-To access the COUPIES API you need to register your application and receive an API-key (felix.schul@coupies.de). You can register multiple applications and for each of them you will receive an API-key for accessing the API resources.
+To access the COUPIES API you need to register your application and receive an API-key (marcel.bender@coupies.de). You can register multiple applications and for each of them you will receive an API-key for accessing the API resources.
 
 To run the example project (HelloCOUPIES), clone the repo, and open the Android Studio project in the "HelloCOUPES" directory. 
 
@@ -120,10 +130,6 @@ private static final String API_KEY = null;
 
 Set API-level to “4” for all coupons including cashback or “3” for all coupons, deals and offers excluding cashback.
 
-## Author
-
-Lars Eimermacher, lars.eimermacher@coupies.de
-
-##Bugs
+## Bugs
 
 If you encounter any bugs. Please [report them](https://github.com/coupies-gmbh/android-sdk/issues).
