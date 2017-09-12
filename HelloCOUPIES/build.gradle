@@ -3,11 +3,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion '21.1.1'
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "de.coupies.demoapp"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 21
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_7
@@ -39,9 +39,7 @@ repositories {
 }
 
 dependencies {
-    compile (name:'coupies-framework_lib-1.9.21', ext:'aar')
-    compile ('com.michaelpardo:activeandroid:3.1.0-SNAPSHOT')
-    compile ('com.google.code.gson:gson:2.5')
+    compile (name:'coupies-framework_lib-1.10.1', ext:'aar')
     compile 'com.android.support:appcompat-v7:21.0.2'
 }
 }
